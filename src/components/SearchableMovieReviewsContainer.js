@@ -13,9 +13,31 @@ export default class SearchableMovieReviewsContainer extends Component {
     searchTerm: ""
   }
 
+  search = event => {
+    this.setState({
+      searchTerm: event.target.value
+    })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    fetch(`${ URL }&query=${ this.state.searchTerm }`)
+    .then(response => response.json())
+    .then(json => this.setState({ reviews: json.results }))
+  }
+
   render(){
     return(
-      <div></div>
+      <form onSubmit={ event => this.handleSubmit(event) }>
+        <div>
+          <strong>Search for Movie Reviews</strong>
+          <input type="text" name="search" id="search" onChange={ event => this.search(event) } value={ this.state.searchTerm }/>
+          </div>
+          <div>
+          <button type="submit">Search!</button>
+        </div>
+      </form>
+
     )
   }
 }
