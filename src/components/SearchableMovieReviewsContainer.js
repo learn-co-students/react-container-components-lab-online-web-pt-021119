@@ -29,18 +29,18 @@ export default class SearchableMovieReviewsContainer extends Component {
   render(){
     return(
       <div>
-      <form onSubmit={ event => this.handleSubmit(event) }>
-        <div>
-          <strong>Search for Movie Reviews</strong>
-          <input type="text" name="search" id="search" onChange={ event => this.search(event) } value={ this.state.searchTerm }/>
+        <form onSubmit={ event => this.handleSubmit(event) }>
+          <div>
+            <strong>Search for Movie Reviews</strong>
+            <input type="text" name="search" id="search" onChange={ event => this.search(event) } value={ this.state.searchTerm }/>
+          </div>
+          <div>
+            <button type="submit">Search!</button>
+          </div>
+        </form>
+        <div className="searchable-movie-reviews">
+          <MovieReviews moviesArr={ this.state.reviews }/>
         </div>
-        <div>
-          <button type="submit">Search!</button>
-        </div>
-      </form>
-      <div className="searchable-movie-reviews">
-        <MovieReviews moviesArr={ this.state.reviews }/>
-      </div>
       </div>
     )
   }
